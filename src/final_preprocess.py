@@ -1,5 +1,5 @@
 # --------------------------------------------
-# Placement Prediction Dataset Preprocessing
+# HR Employee Attrition Dataset Preprocessing
 # --------------------------------------------
 
 
@@ -9,8 +9,8 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 
 # Read original dataset
-input_file = "/Users/khvsaieswar/Desktop/placement_prediction/dataset/placement_predict_50K_Raw.csv"
-output_file = "/Users/khvsaieswar/Desktop/placement_prediction/dataset/final_preprocess_M2.csv"
+input_file = "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/HR_Employee_Attrition_raw.csv"
+output_file = "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/final_preprocess.csv"
 
 
 df = pd.read_csv(input_file)
@@ -39,15 +39,15 @@ numeric_cols = processed_df.select_dtypes(include=['int64', 'float64']).columns
 
 
 for col in numeric_cols:
-   processed_df[col].fillna(processed_df[col].median(), inplace=True)
+   processed_df[col] = processed_df[col].fillna(processed_df[col].median())
 
 
 # Categorical Columns
-categorical_cols = processed_df.select_dtypes(include=['object']).columns
+categorical_cols = processed_df.select_dtypes(include=['object', 'str']).columns
 
 
 for col in categorical_cols:
-   processed_df[col].fillna(processed_df[col].mode()[0], inplace=True)
+   processed_df[col] = processed_df[col].fillna(processed_df[col].mode()[0])
 
 
 # --------------------------------------------
@@ -91,3 +91,4 @@ print("\nPreprocessing Completed Successfully!")
 print("Original Dataset Shape :", df.shape)
 print("Processed Dataset Shape:", processed_df.shape)
 print("Saved File :", output_file)
+

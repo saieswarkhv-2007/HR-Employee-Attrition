@@ -9,7 +9,7 @@ from sklearn.impute import SimpleImputer
 
 
 # ==========================================================
-# Load Placement Prediction Dataset
+# Load HR Employee Attrition Dataset
 # Original dataset will NOT be modified
 # ==========================================================
 
@@ -163,7 +163,7 @@ print(data.isnull().sum())
 
 
 data.to_csv(
-   "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_label_encode_M2.csv",
+   "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_label_encode.csv",
    index=False
 )
 
@@ -174,5 +174,5 @@ print("\n======================================")
 print("Original dataset is NOT modified.")
 print("Label Encoding completed successfully.")
 print("Output file:")
-print("clean_label_encode_M2.csv")
+print("clean_label_encode.csv")
 print("======================================")

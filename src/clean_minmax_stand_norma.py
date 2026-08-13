@@ -4,7 +4,7 @@
 # Numeric column pre-process Techniques
 # Mean, Median, mode
 # Feature Scaling, Standardization, and Normalization
-# Save all results in ONE CSV file (clean_minmax_stand_norma_M2.csv)
+# Save all results in ONE CSV file (clean_minmax_stand_norma.csv)
 # ------------------------------------------------------------
 # check the scikit-learn library is installed or not
 # if not install with the command "pip install scikit-learn"
@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 # Load Dataset
 # ------------------------------------------------------------
 # Replace with your dataset filename
-file_path = "/Users/khvsaieswar/Desktop/placement_prediction/dataset/placement_predict_50K_Raw.csv"
+file_path = "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/HR_Employee_Attrition_raw.csv"
 
 
 df = pd.read_csv(file_path)
@@ -165,18 +165,18 @@ print(df.duplicated().sum())
 # ---------------------------------------------------
 # Step 8: Save Preprocessed Dataset
 # ---------------------------------------------------
-df.to_csv("/Users/khvsaieswar/Desktop/placement_prediction/dataset/clean_minmax_stand_norma_M2.csv", index=False)
+df.to_csv("/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_minmax_stand_norma.csv", index=False)
 
 
 print("\nPreprocessed dataset saved successfully.")
 
 
 # to display histogram of preprocessed data
-pf = pd.read_csv("/Users/khvsaieswar/Desktop/placement_prediction/dataset/clean_minmax_stand_norma_M2.csv")
+pf = pd.read_csv("/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_minmax_stand_norma.csv")
 # Display histograms
 pf.hist(figsize=(12, 10), bins=10, edgecolor='black')
 
 
-plt.suptitle("Histogram of Preprocessed Placement Dataset")
+plt.suptitle("Histogram of Preprocessed HR Employee Attrition Dataset")
 plt.tight_layout()
 plt.show()

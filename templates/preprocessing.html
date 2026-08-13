@@ -1,73 +1,89 @@
 {% extends "base.html" %}
 
-
-{% block title %}Preprocessing{% endblock %}
-
+{% block title %}Preprocessing - HR Employee Attrition System{% endblock %}
 
 {% block content %}
 
-
 <div class="page">
+    <h1>🔧 HR Data Preprocessing Pipeline</h1>
+    <p>Comprehensive data transformation pipeline applied to prepare <code>HR_Employee_Attrition_raw.csv</code> for machine learning model training.</p>
 
+    <div class="cards">
+        <div class="card stat-primary">
+            <h3>1. Missing Value Imputation</h3>
+            <p>Applied Deletion, Mean/Median Imputation, Linear Regression Model Imputer, and MissingIndicator feature flags.</p>
+        </div>
 
-   <h1>Data Preprocessing</h1>
+        <div class="card stat-warning">
+            <h3>2. Categorical Encoding</h3>
+            <p>Implemented One-Hot Encoding, Ordinal Encoding, Target Encoding (based on Attrition rate), and Embedding Encoders.</p>
+        </div>
 
+        <div class="card stat-success">
+            <h3>3. Feature Scaling</h3>
+            <p>Applied StandardScaler (Z-score standardization), MinMaxScaler (0-1 range), and L2 Normalizer across all 15 numerical features.</p>
+        </div>
 
-   <div class="cards">
+        <div class="card stat-primary">
+            <h3>4. Text Normalization</h3>
+            <p>Cleaned whitespace formatting, stripped trailing spaces, and normalized text categories for <code>Department</code>, <code>JobRole</code>, and <code>EducationField</code>.</p>
+        </div>
+    </div>
 
-
-       <div class="card">
-           <h3>Missing Values</h3>
-           <p>
-               Deletion, mean imputation, median imputation,
-               model-based imputation and MissingIndicator.
-           </p>
-       </div>
-
-
-       <div class="card">
-           <h3>Data Cleaning</h3>
-           <p>
-               Identify and remove duplicate and inconsistent records.
-           </p>
-       </div>
-
-
-       <div class="card">
-           <h3>Encoding</h3>
-           <p>
-               One-hot, ordinal, target and embedding-based encoding.
-           </p>
-       </div>
-
-
-       <div class="card">
-           <h3>Feature Scaling</h3>
-           <p>
-               Standardization and normalization of numerical features.
-           </p>
-       </div>
-
-
-   </div>
-
-
-   <div class="workflow">
-
-
-       <h2>Preprocessing Workflow</h2>
-
-
-       <p>
-           Raw Dataset → Cleaning → Missing Values →
-           Encoding → Scaling → Processed Dataset
-       </p>
-
-
-   </div>
-
-
+    <h2>Generated Preprocessed Datasets</h2>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Dataset File Name</th>
+                    <th>Transformation Applied</th>
+                    <th>Destination Path</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>clean_del_mean_model.csv</code></td>
+                    <td>Missing Values (Mean, Median, Model-based Imputation)</td>
+                    <td><code>dataset/clean_del_mean_model.csv</code></td>
+                </tr>
+                <tr>
+                    <td><code>clean_label_encode.csv</code></td>
+                    <td>Scikit-Learn Label Encoding</td>
+                    <td><code>dataset/clean_label_encode.csv</code></td>
+                </tr>
+                <tr>
+                    <td><code>clean_one_hot_encoding.csv</code></td>
+                    <td>One-Hot Binary Vectors</td>
+                    <td><code>dataset/clean_one_hot_encoding.csv</code></td>
+                </tr>
+                <tr>
+                    <td><code>clean_ordinal_encode.csv</code></td>
+                    <td>Ordinal Scale Ranking</td>
+                    <td><code>dataset/clean_ordinal_encode.csv</code></td>
+                </tr>
+                <tr>
+                    <td><code>clean_target_encode.csv</code></td>
+                    <td>Target Attrition Rate Mean Encoding</td>
+                    <td><code>dataset/clean_target_encode.csv</code></td>
+                </tr>
+                <tr>
+                    <td><code>clean_embedded_encode.csv</code></td>
+                    <td>Embedding Dimension Vectors</td>
+                    <td><code>dataset/clean_embedded_encode.csv</code></td>
+                </tr>
+                <tr>
+                    <td><code>clean_minmax_stand_norma.csv</code></td>
+                    <td>Standardization, MinMax & L2 Normalization</td>
+                    <td><code>dataset/clean_minmax_stand_norma.csv</code></td>
+                </tr>
+                <tr>
+                    <td><code>final_preprocess.csv</code></td>
+                    <td>End-to-End Pipeline (Cleaning + Encoding + Scaling)</td>
+                    <td><code>dataset/final_preprocess.csv</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
 
 {% endblock %}

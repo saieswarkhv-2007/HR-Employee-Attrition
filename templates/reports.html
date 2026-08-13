@@ -1,53 +1,38 @@
 {% extends "base.html" %}
 
-
-{% block title %}Reports{% endblock %}
-
+{% block title %}Reports - HR Employee Attrition System{% endblock %}
 
 {% block content %}
 
-
 <div class="page">
+    <h1>📋 HR Attrition Analytics Reports</h1>
+    <p>Generate summary reports and export preprocessed HR datasets.</p>
 
+    <div class="cards">
+        <div class="card stat-primary">
+            <h3>🏢 Organizational Risk Report</h3>
+            <p>Comprehensive overview of workforce turnover drivers and departmental retention rates.</p>
+            <button style="margin-top: 14px;" onclick="alert('Exporting Organizational Attrition Risk Summary Report...')">Export PDF Report</button>
+        </div>
 
-   <h1>Placement Reports</h1>
+        <div class="card stat-warning">
+            <h3>⚡ OverTime & Burnout Audit</h3>
+            <p>Detailed analysis of overtime hours, job satisfaction metrics, and burnout probability.</p>
+            <button style="margin-top: 14px;" onclick="alert('Exporting OverTime & Burnout Audit Report...')">Export CSV Audit</button>
+        </div>
 
+        <div class="card stat-success">
+            <h3>🤖 Model Evaluation Report</h3>
+            <p>Performance metrics, ROC-AUC curves, and confusion matrix data for ML classifiers.</p>
+            <button style="margin-top: 14px;" onclick="alert('Exporting ML Model Evaluation Report...')">Export Benchmark Report</button>
+        </div>
 
-   <div class="cards">
-
-
-       <div class="card">
-           <h3>Student Report</h3>
-           <p>View student placement information.</p>
-           <button>Generate Report</button>
-       </div>
-
-
-       <div class="card">
-           <h3>Prediction Report</h3>
-           <p>View placement prediction results.</p>
-           <button>Generate Report</button>
-       </div>
-
-
-       <div class="card">
-           <h3>Model Report</h3>
-           <p>View machine learning model performance.</p>
-           <button>Generate Report</button>
-       </div>
-
-
-       <div class="card">
-           <h3>Dataset Report</h3>
-           <p>View dataset and preprocessing information.</p>
-           <button>Generate Report</button>
-       </div>
-
-
-   </div>
-
-
+        <div class="card stat-primary">
+            <h3>📂 Preprocessed Datasets</h3>
+            <p>Access ready-to-train preprocessed CSV files stored in <code>dataset/</code>.</p>
+            <a href="{{ url_for('preprocessing') }}" class="btn secondary" style="margin-top: 14px; display: inline-block;">View Output Files</a>
+        </div>
+    </div>
 </div>
-
 
 {% endblock %}

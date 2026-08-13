@@ -9,7 +9,7 @@ from sklearn.impute import SimpleImputer
 
 
 # ==========================================================
-# Load Placement Prediction Dataset
+# Load HR Employee Attrition Dataset
 # Original dataset will NOT be modified
 # ==========================================================
 
@@ -180,7 +180,7 @@ print(final_output.isnull().sum())
 
 
 final_output.to_csv(
-   "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_ordinal_encode_M2.csv",
+   "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_ordinal_encode.csv",
    index=False
 )
 
@@ -191,5 +191,5 @@ print("\n======================================")
 print("Original dataset is NOT modified.")
 print("Ordinal Encoding completed successfully.")
 print("Output file:")
-print("clean_ordinal_encode_M2.csv")
+print("clean_ordinal_encode.csv")
 print("======================================")

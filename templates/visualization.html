@@ -1,49 +1,74 @@
 {% extends "base.html" %}
 
-
-{% block title %}Visualization{% endblock %}
-
+{% block title %}Visualization - HR Employee Attrition System{% endblock %}
 
 {% block content %}
 
-
 <div class="page">
+    <h1>📈 Exploratory Data Analysis & Visualizations</h1>
+    <p>Visual analytics generated from the HR Employee Attrition dataset.</p>
 
+    <div class="cards">
+        <div class="card stat-primary">
+            <h3>📊 Attrition Distribution</h3>
+            <p>Count plot of employee attrition (1,233 Stayed vs 237 Departed).</p>
+        </div>
 
-   <h1>Data Visualization</h1>
+        <div class="card stat-success">
+            <h3>💰 Monthly Income vs Attrition</h3>
+            <p>Boxplot comparison showing lower median monthly income for departing staff.</p>
+        </div>
 
+        <div class="card stat-warning">
+            <h3>⏰ OverTime Impact Analysis</h3>
+            <p>High attrition propensity observed among employees working frequent overtime.</p>
+        </div>
 
-   <div class="cards">
+        <div class="card stat-primary">
+            <h3>🔥 Feature Correlation Matrix</h3>
+            <p>Multivariate correlation heatmap across numerical HR metrics.</p>
+        </div>
+    </div>
 
+    <h2>Generated Plots & Folder Structure</h2>
+    <p>All high-resolution figures have been automatically saved to designated workspace directories:</p>
 
-       <div class="card">
-           <h3>Placement Distribution</h3>
-           <p>Placed vs Not Placed visualization.</p>
-       </div>
-
-
-       <div class="card">
-           <h3>CGPA Analysis</h3>
-           <p>CGPA and placement relationship.</p>
-       </div>
-
-
-       <div class="card">
-           <h3>Department Analysis</h3>
-           <p>Department-wise placement analysis.</p>
-       </div>
-
-
-       <div class="card">
-           <h3>Correlation Matrix</h3>
-           <p>Relationship between numerical features.</p>
-       </div>
-
-
-   </div>
-
-
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Visualization Type</th>
+                    <th>Saved File Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Correlation Matrix Heatmap</td>
+                    <td><code>outputs/Boxplots_correlation/correlation_heatmap.png</code></td>
+                </tr>
+                <tr>
+                    <td>Feature vs Attrition Boxplots</td>
+                    <td><code>outputs/Boxplots_correlation/boxplot_*_vs_Attrition.png</code></td>
+                </tr>
+                <tr>
+                    <td>Univariate Histograms</td>
+                    <td><code>outputs/EDA_Analysis_outputs/Histogram_*.png</code></td>
+                </tr>
+                <tr>
+                    <td>Target Attrition Distribution</td>
+                    <td><code>outputs/EDA_Analysis_outputs/Target_Distribution.png</code></td>
+                </tr>
+                <tr>
+                    <td>Category Count Plots</td>
+                    <td><code>outputs/EDA_Analysis_outputs/Countplot_*.png</code></td>
+                </tr>
+                <tr>
+                    <td>Pair Plot Analysis</td>
+                    <td><code>outputs/EDA_Analysis_outputs/Pairplot.png</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
 
 {% endblock %}

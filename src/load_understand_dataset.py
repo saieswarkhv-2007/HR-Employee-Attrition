@@ -41,7 +41,7 @@ try:
 
    # Display the first 10 rows of the table dataset
    print("-----------------------------------")
-   print("\n 4. --- Placement Predict CSV Dataset Table View ---")
+   print("\n 4. --- HR Employee Attrition CSV Dataset Table View ---")
    print("-----------------------------------")
    print("Dataset first 10 records")
    print("-----------------------------------")
@@ -116,8 +116,6 @@ try:
          float_columns.isnull().sum().sum())
 
 
-
-
    # Select categorical(object) columns
    categorical_df = df.select_dtypes(include=['object'])
    # Display categorical columns
@@ -130,8 +128,6 @@ try:
    print(categorical_df.isnull().sum())
    print("\n13. Total Missing Categorical Values:",
          categorical_df.isnull().sum().sum())
-
-
 
 
    # Display missing values in each column
@@ -158,17 +154,6 @@ try:
    print(" 17. Statistical Overview")
    print("-----------------------------------")
    print(df.describe())
-
-
-   # display histogram for CGPA numerical Attribute
-   print("18. Display Histogram of CGPA Attribute")
-   plt.figure(figsize=(8, 5))
-   plt.hist(df['CGPA'], bins=10, edgecolor='black')
-   plt.title("Histogram of CGPA")
-   plt.xlabel("CGPA")
-   plt.ylabel("Frequency")
-   plt.grid(True)
-   plt.show()
 
 
 except FileNotFoundError:

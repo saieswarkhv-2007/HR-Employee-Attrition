@@ -10,7 +10,6 @@ import seaborn as sns
 # ============================================================
 
 DATASET_PATH = "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/HR_Employee_Attrition_raw.csv"
-
 OUTPUT_DIR = "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/outputs/Boxplots_correlation"
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -20,10 +19,9 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 # Load Dataset
 # ============================================================
 
-# header=1 because the actual column names are on the second row
-df = pd.read_csv(DATASET_PATH, header=1)
+df = pd.read_csv(DATASET_PATH)
 
-print("Dataset Loaded Successfully.")
+print("HR Employee Attrition Dataset Loaded Successfully.")
 print("Dataset Shape:", df.shape)
 
 print("\nColumn Names:")
@@ -70,7 +68,7 @@ sns.heatmap(
 )
 
 plt.title(
-    "Correlation Heatmap of Numerical Features",
+    "Correlation Heatmap of HR Employee Attrition Features",
     fontsize=14,
     fontweight="bold"
 )
@@ -169,7 +167,7 @@ else:
 # ============================================================
 
 print("\n" + "=" * 60)
-print("All EDA tasks completed successfully!")
+print("All HR Attrition EDA tasks completed successfully!")
 print("Output directory:")
 print(OUTPUT_DIR)
 print("=" * 60)

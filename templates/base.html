@@ -1,63 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}HR Employee Attrition System{% endblock %}</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-   <title>{% block title %} University Placement Prediction System{% endblock %}</title>
-
-
-   <link rel="stylesheet"
-         href="{{ url_for('static', filename='style.css') }}">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
-
 <body>
 
+<div class="app-layout">
+    <!-- Left Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="brand">
+                <span class="brand-icon">👥</span>
+                <div class="brand-text">
+                    <span class="brand-name">HR Attrition</span>
+                    <span class="brand-badge">ML Platform</span>
+                </div>
+            </div>
+            <button class="sidebar-close" id="sidebarCloseBtn" aria-label="Close sidebar">✕</button>
+        </div>
 
-<header>
-   <div class="logo">
-       🎓 Placement Prediction System
-   </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('home') }}" class="nav-item {% if request.endpoint == 'home' %}active{% endif %}">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Home</span>
+            </a>
+            <a href="{{ url_for('dashboard') }}" class="nav-item {% if request.endpoint == 'dashboard' %}active{% endif %}">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+            <a href="{{ url_for('prediction') }}" class="nav-item {% if request.endpoint == 'prediction' %}active{% endif %}">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-label">Prediction</span>
+            </a>
+            <a href="{{ url_for('dataset') }}" class="nav-item {% if request.endpoint == 'dataset' %}active{% endif %}">
+                <span class="nav-icon">📂</span>
+                <span class="nav-label">Dataset</span>
+            </a>
+            <a href="{{ url_for('preprocessing') }}" class="nav-item {% if request.endpoint == 'preprocessing' %}active{% endif %}">
+                <span class="nav-icon">🔧</span>
+                <span class="nav-label">Preprocessing</span>
+            </a>
+            <a href="{{ url_for('visualization') }}" class="nav-item {% if request.endpoint == 'visualization' %}active{% endif %}">
+                <span class="nav-icon">📈</span>
+                <span class="nav-label">Visualization</span>
+            </a>
+            <a href="{{ url_for('models') }}" class="nav-item {% if request.endpoint == 'models' %}active{% endif %}">
+                <span class="nav-icon">🤖</span>
+                <span class="nav-label">ML Models</span>
+            </a>
+            <a href="{{ url_for('reports') }}" class="nav-item {% if request.endpoint == 'reports' %}active{% endif %}">
+                <span class="nav-icon">📋</span>
+                <span class="nav-label">Reports</span>
+            </a>
+            <a href="{{ url_for('about') }}" class="nav-item {% if request.endpoint == 'about' %}active{% endif %}">
+                <span class="nav-icon">ℹ️</span>
+                <span class="nav-label">About</span>
+            </a>
+            <a href="{{ url_for('contact') }}" class="nav-item {% if request.endpoint == 'contact' %}active{% endif %}">
+                <span class="nav-icon">✉️</span>
+                <span class="nav-label">Contact</span>
+            </a>
+        </nav>
 
+        <div class="sidebar-footer">
+            <div class="user-status">
+                <span class="status-indicator"></span>
+                <div class="user-info">
+                    <span class="user-name">HR Analytics Core</span>
+                    <span class="user-role">v2.4 Attrition Engine</span>
+                </div>
+            </div>
+        </div>
+    </aside>
 
-   <nav>
-       <a href="{{ url_for('home') }}">Home</a>
-       <a href="{{ url_for('about') }}">About</a>
-       <a href="{{ url_for('dataset') }}">Dataset</a>
-       <a href="{{ url_for('preprocessing') }}">Preprocessing</a>
-       <a href="{{ url_for('visualization') }}">Visualization</a>
-       <a href="{{ url_for('models') }}">ML Models</a>
-       <a href="{{ url_for('prediction') }}">Prediction</a>
-       <a href="{{ url_for('dashboard') }}">Dashboard</a>
-       <a href="{{ url_for('reports') }}">Reports</a>
-       <a href="{{ url_for('contact') }}">Contact</a>
-   </nav>
-</header>
+    <!-- Overlay for mobile sidebar -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+        <!-- Top Navbar for Mobile & Header Actions -->
+        <header class="top-header">
+            <button class="sidebar-toggle" id="sidebarToggleBtn" aria-label="Toggle sidebar">
+                ☰
+            </button>
+            <div class="header-title">
+                <span>HR Employee Attrition System</span>
+            </div>
+            <div class="header-right">
+                <span class="dataset-pill">HR_Employee_Attrition.csv</span>
+            </div>
+        </header>
 
+        <main class="main-content">
+            {% block content %}
+            {% endblock %}
+        </main>
 
+        <footer class="app-footer">
+            <div class="footer-content">
+                <p>© 2026 HR Employee Attrition Analytics System | Powered by Python, Flask & Scikit-Learn</p>
+            </div>
+        </footer>
+    </div>
+</div>
 
-<main>
+<script>
+    const toggleBtn = document.getElementById('sidebarToggleBtn');
+    const closeBtn = document.getElementById('sidebarCloseBtn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
 
+    if (toggleBtn && sidebar && overlay) {
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.add('open');
+            overlay.classList.add('open');
+        });
+    }
 
-   {% block content %}
+    if (closeBtn && sidebar && overlay) {
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+        });
+    }
 
-
-   {% endblock %}
-
-
-</main>
-
-
-
-
-<footer>
-   <p>© 2026 Placement Prediction System</p>
-   <p>Python | Flask | Pandas | Machine Learning</p>
-</footer>
-
+    if (overlay && sidebar) {
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+        });
+    }
+</script>
 
 </body>
 </html>

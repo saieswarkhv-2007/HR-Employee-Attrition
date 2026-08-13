@@ -1,57 +1,66 @@
 {% extends "base.html" %}
 
-
-{% block title %}Dashboard{% endblock %}
-
+{% block title %}Dashboard - HR Employee Attrition System{% endblock %}
 
 {% block content %}
 
-
 <div class="page">
+    <h1>📊 Workforce Attrition Executive Dashboard</h1>
+    <p>Overview of organizational attrition trends, retention rates, and departmental risk distribution based on the HR dataset.</p>
 
+    <div class="cards">
+        <div class="card stat-primary">
+            <h3>👥 Total Employees</h3>
+            <h2>1,470</h2>
+            <p>Active workforce records</p>
+        </div>
 
-   <h1>Placement Dashboard</h1>
+        <div class="card stat-danger">
+            <h3>🚪 Attrition Count</h3>
+            <h2>237</h2>
+            <p>Employees departed</p>
+        </div>
 
+        <div class="card stat-success">
+            <h3>🛡️ Retention Rate</h3>
+            <h2>83.9%</h2>
+            <p>Overall organizational stability</p>
+        </div>
 
-   <div class="cards">
+        <div class="card stat-warning">
+            <h3>⚡ OverTime Risk Ratio</h3>
+            <h2>30.5%</h2>
+            <p>Employees working overtime</p>
+        </div>
+    </div>
 
+    <h2>Departmental Attrition Insights</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>🔬 Research & Development</h3>
+            <p>Total Staff: 961 | Departed: 133</p>
+            <h2 style="font-size: 22px; color: #2563eb; margin-top: 8px;">13.8% Attrition Rate</h2>
+        </div>
 
-       <div class="card">
-           <h3>Total Students</h3>
-           <h2>--</h2>
-       </div>
+        <div class="card">
+            <h3>💼 Sales</h3>
+            <p>Total Staff: 446 | Departed: 92</p>
+            <h2 style="font-size: 22px; color: #ef4444; margin-top: 8px;">20.6% Attrition Rate</h2>
+        </div>
 
+        <div class="card">
+            <h3>🤝 Human Resources</h3>
+            <p>Total Staff: 63 | Departed: 12</p>
+            <h2 style="font-size: 22px; color: #f59e0b; margin-top: 8px;">19.0% Attrition Rate</h2>
+        </div>
+    </div>
 
-       <div class="card">
-           <h3>Placed Students</h3>
-           <h2>--</h2>
-       </div>
-
-
-       <div class="card">
-           <h3>Not Placed</h3>
-           <h2>--</h2>
-       </div>
-
-
-       <div class="card">
-           <h3>Placement Percentage</h3>
-           <h2>--%</h2>
-       </div>
-
-
-   </div>
-
-
-   <h2>Placement Analytics</h2>
-
-
-   <div class="chart-placeholder">
-       Placement charts will appear here.
-   </div>
-
-
+    <h2>Visual Analytics Overview</h2>
+    <div class="chart-placeholder">
+        <span style="font-size: 40px;">📊</span>
+        <p style="font-weight: 600; color: #0f172a;">Correlation Heatmap & Boxplots Generated</p>
+        <p style="font-size: 13px;">View full high-resolution output files in <code>outputs/Boxplots_correlation/</code> and <code>outputs/EDA_Analysis_outputs/</code></p>
+    </div>
 </div>
-
 
 {% endblock %}

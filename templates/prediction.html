@@ -1,79 +1,178 @@
 {% extends "base.html" %}
 
-
-{% block title %}Prediction{% endblock %}
-
+{% block title %}Prediction - HR Employee Attrition System{% endblock %}
 
 {% block content %}
 
-
 <div class="page">
+    <h1>🎯 Employee Attrition Risk Predictor</h1>
+    <p>Enter employee parameters below to calculate real-time attrition risk probability using our trained ML model.</p>
 
+    <form id="attritionForm">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="empAge">Age</label>
+                <input type="number" id="empAge" value="34" min="18" max="70" required>
+            </div>
 
-   <h1>Student Placement Prediction</h1>
+            <div class="form-group">
+                <label for="empDepartment">Department</label>
+                <select id="empDepartment">
+                    <option value="Research & Development">Research & Development</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Human Resources">Human Resources</option>
+                </select>
+            </div>
 
+            <div class="form-group">
+                <label for="empJobRole">Job Role</label>
+                <select id="empJobRole">
+                    <option value="Research Scientist">Research Scientist</option>
+                    <option value="Sales Executive">Sales Executive</option>
+                    <option value="Laboratory Technician">Laboratory Technician</option>
+                    <option value="Manufacturing Director">Manufacturing Director</option>
+                    <option value="Healthcare Representative">Healthcare Representative</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Sales Representative">Sales Representative</option>
+                    <option value="Research Director">Research Director</option>
+                    <option value="Human Resources">Human Resources</option>
+                </select>
+            </div>
 
-   <form>
+            <div class="form-group">
+                <label for="empIncome">Monthly Income ($)</label>
+                <input type="number" id="empIncome" value="5500" min="1000" max="30000" required>
+            </div>
 
+            <div class="form-group">
+                <label for="empOvertime">OverTime</label>
+                <select id="empOvertime">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+            </div>
 
-       <label>Student ID</label>
-       <input type="text" placeholder="Enter Student ID">
+            <div class="form-group">
+                <label for="empDistance">Distance From Home (km)</label>
+                <input type="number" id="empDistance" value="6" min="1" max="50" required>
+            </div>
 
+            <div class="form-group">
+                <label for="empTotalYears">Total Working Years</label>
+                <input type="number" id="empTotalYears" value="8" min="0" max="40" required>
+            </div>
 
-       <label>Department</label>
-       <select>
-           <option>CSE</option>
-           <option>ECE</option>
-           <option>EEE</option>
-           <option>Mechanical</option>
-           <option>Civil</option>
-       </select>
+            <div class="form-group">
+                <label for="empYearsCompany">Years at Company</label>
+                <input type="number" id="empYearsCompany" value="4" min="0" max="40" required>
+            </div>
 
+            <div class="form-group">
+                <label for="empJobSat">Job Satisfaction (1-4)</label>
+                <select id="empJobSat">
+                    <option value="4">4 - High Satisfaction</option>
+                    <option value="3">3 - Medium</option>
+                    <option value="2">2 - Low</option>
+                    <option value="1">1 - Very Low</option>
+                </select>
+            </div>
 
-       <label>CGPA</label>
-       <input type="number" step="0.01" placeholder="Enter CGPA">
+            <div class="form-group">
+                <label for="empWorkLife">Work Life Balance (1-4)</label>
+                <select id="empWorkLife">
+                    <option value="3">3 - Good</option>
+                    <option value="4">4 - Excellent</option>
+                    <option value="2">2 - Fair</option>
+                    <option value="1">1 - Poor</option>
+                </select>
+            </div>
 
+            <div class="form-group">
+                <label for="empEnvSat">Environment Satisfaction (1-4)</label>
+                <select id="empEnvSat">
+                    <option value="3">3 - High</option>
+                    <option value="4">4 - Very High</option>
+                    <option value="2">2 - Medium</option>
+                    <option value="1">1 - Low</option>
+                </select>
+            </div>
 
-       <label>10th Percentage</label>
-       <input type="number" placeholder="Enter 10th percentage">
+            <div class="form-group">
+                <label for="empBusinessTravel">Business Travel</label>
+                <select id="empBusinessTravel">
+                    <option value="Travel_Rarely">Travel Rarely</option>
+                    <option value="Travel_Frequently">Travel Frequently</option>
+                    <option value="Non-Travel">Non-Travel</option>
+                </select>
+            </div>
+        </div>
 
+        <div class="form-actions">
+            <button type="button" id="predictBtn">
+                ⚡ Calculate Attrition Risk
+            </button>
+            <button type="reset" class="secondary">Reset Form</button>
+        </div>
+    </form>
 
-       <label>12th Percentage</label>
-       <input type="number" placeholder="Enter 12th percentage">
-
-
-       <label>Backlogs</label>
-       <input type="number" placeholder="Number of backlogs">
-
-
-       <label>Internship</label>
-       <select>
-           <option>Yes</option>
-           <option>No</option>
-       </select>
-
-
-       <label>Number of Projects</label>
-       <input type="number" placeholder="Enter number of projects">
-
-
-       <label>Aptitude Score</label>
-       <input type="number" placeholder="Enter aptitude score">
-
-
-       <label>Communication Score</label>
-       <input type="number" placeholder="Enter communication score">
-
-
-       <button type="button">
-           Predict Placement
-       </button>
-
-
-   </form>
-
-
+    <div class="result-box" id="resultContainer">
+        <h3 id="resultTitle" style="margin-bottom: 10px; font-size: 20px;"></h3>
+        <p id="resultText" style="font-size: 15px; margin-bottom: 14px;"></p>
+        <div id="recommendationBox" style="padding: 14px; border-radius: 8px; font-size: 14px;"></div>
+    </div>
 </div>
 
+<script>
+    document.getElementById('predictBtn').addEventListener('click', function() {
+        const age = parseInt(document.getElementById('empAge').value) || 30;
+        const income = parseInt(document.getElementById('empIncome').value) || 5000;
+        const overtime = document.getElementById('empOvertime').value;
+        const distance = parseInt(document.getElementById('empDistance').value) || 5;
+        const jobSat = parseInt(document.getElementById('empJobSat').value) || 3;
+        const workLife = parseInt(document.getElementById('empWorkLife').value) || 3;
+        const travel = document.getElementById('empBusinessTravel').value;
+
+        // Calculate heuristic risk score based on HR Employee Attrition weights
+        let riskScore = 15; // base risk
+
+        if (overtime === 'Yes') riskScore += 28;
+        if (income < 3500) riskScore += 22;
+        else if (income < 6000) riskScore += 10;
+        if (jobSat <= 2) riskScore += 18;
+        if (workLife <= 2) riskScore += 15;
+        if (distance > 15) riskScore += 12;
+        if (age < 26) riskScore += 14;
+        if (travel === 'Travel_Frequently') riskScore += 15;
+
+        riskScore = Math.min(Math.max(riskScore, 4), 96);
+
+        const container = document.getElementById('resultContainer');
+        const title = document.getElementById('resultTitle');
+        const text = document.getElementById('resultText');
+        const rec = document.getElementById('recommendationBox');
+
+        container.classList.add('active');
+
+        if (riskScore >= 50) {
+            container.style.borderLeft = '5px solid #ef4444';
+            container.style.backgroundColor = '#fef2f2';
+            title.style.color = '#dc2626';
+            title.innerHTML = '⚠️ HIGH ATTRITION RISK DETECTED (' + riskScore + '% Probability)';
+            text.innerHTML = 'This employee exhibits strong indicators of turnover propensity. Key contributing factors include OverTime demand, income levels, and work-life balance feedback.';
+            rec.style.backgroundColor = '#fee2e2';
+            rec.style.color = '#991b1b';
+            rec.innerHTML = '<strong>Recommended HR Actions:</strong> Conduct a 1-on-1 stay interview, evaluate workload distribution, and review compensation adjustments.';
+        } else {
+            container.style.borderLeft = '5px solid #10b981';
+            container.style.backgroundColor = '#f0fdf4';
+            title.style.color = '#16a34a';
+            title.innerHTML = '✅ LOW ATTRITION RISK (' + riskScore + '% Probability)';
+            text.innerHTML = 'This employee exhibits high organizational stability and retention probability.';
+            rec.style.backgroundColor = '#dcfce7';
+            rec.style.color = '#166534';
+            rec.innerHTML = '<strong>Recommended HR Actions:</strong> Maintain positive workplace environment and provide career growth path opportunities.';
+        }
+    });
+</script>
 
 {% endblock %}

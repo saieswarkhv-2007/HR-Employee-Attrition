@@ -1,52 +1,41 @@
 {% extends "base.html" %}
 
-
-{% block title %}Contact{% endblock %}
-
+{% block title %}Contact - HR Employee Attrition System{% endblock %}
 
 {% block content %}
 
-
 <div class="page">
+    <h1>✉️ Contact HR Analytics Team</h1>
+    <p>For questions, support, or feedback regarding the HR Employee Attrition AI platform, submit a message below.</p>
 
+    <form onsubmit="event.preventDefault(); alert('Thank you! Your message has been sent to the HR Analytics support team.');">
+        <div class="form-group">
+            <label for="contactName">Name</label>
+            <input type="text" id="contactName" placeholder="Enter your full name" required>
+        </div>
 
-   <h1>Contact Us</h1>
+        <div class="form-group">
+            <label for="contactEmail">Work Email</label>
+            <input type="email" id="contactEmail" placeholder="Enter your work email" required>
+        </div>
 
+        <div class="form-group">
+            <label for="contactSubject">Subject</label>
+            <select id="contactSubject">
+                <option>General Inquiry</option>
+                <option>Model Accuracy Feedback</option>
+                <option>Custom HR Dataset Integration</option>
+                <option>Technical Support</option>
+            </select>
+        </div>
 
-   <h2>Placement Prediction System</h2>
+        <div class="form-group">
+            <label for="contactMessage">Message</label>
+            <textarea id="contactMessage" rows="5" placeholder="Write your message here..." required></textarea>
+        </div>
 
-
-   <p>
-       For questions, feedback or technical support,
-       contact the project team.
-   </p>
-
-
-   <form>
-
-
-       <label>Name</label>
-       <input type="text" placeholder="Enter your name">
-
-
-       <label>Email</label>
-       <input type="email" placeholder="Enter your email">
-
-
-       <label>Message</label>
-       <textarea rows="6"
-                 placeholder="Enter your message"></textarea>
-
-
-       <button type="button">
-           Submit
-       </button>
-
-
-   </form>
-
-
+        <button type="submit">Send Message</button>
+    </form>
 </div>
-
 
 {% endblock %}

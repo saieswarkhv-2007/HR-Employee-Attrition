@@ -1,16 +1,23 @@
+import os
+
 import pandas as pd
 import numpy as np
 
 
-
-
 # ==========================================================
-# Load Placement Prediction Dataset
+# Load HR Employee Attrition Dataset
 # Original dataset is NOT modified
 # ==========================================================
 
+target_encode_path = "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_target_encode.csv"
+raw_dataset_path = "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/HR_Employee_Attrition_raw.csv"
 
-df = pd.read_csv("/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_target_encode_M2.csv")
+if os.path.exists(target_encode_path):
+    input_path = target_encode_path
+else:
+    input_path = raw_dataset_path
+
+df = pd.read_csv(input_path)
 
 
 # Create copy
@@ -225,7 +232,7 @@ print(final_output.isnull().sum())
 
 
 final_output.to_csv(
-   "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_embedded_encode_M2.csv",
+   "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_embedded_encode.csv",
    index=False
 )
 
@@ -236,5 +243,5 @@ print("\n======================================")
 print("Embedding Encoding Completed")
 print("Original dataset is NOT modified")
 print("Output File:")
-print("clean_embedded_encode_M2.csv")
+print("clean_embedded_encode.csv")
 print("======================================")

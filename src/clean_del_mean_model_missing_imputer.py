@@ -2,7 +2,7 @@ import pandas as pd
 
 
 # ============================================================
-# PLACEMENT PREDICTION DATASET
+# HR EMPLOYEE ATTRITION DATASET
 # HANDLING MISSING VALUES USING PANDAS ONLY
 #
 # Techniques:
@@ -25,14 +25,14 @@ import pandas as pd
 
 
 input_file = "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/HR_Employee_Attrition_raw.csv"
-output_file = "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_del_mean_model_M2.csv"
+output_file = "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_del_mean_model.csv"
 
 
 df = pd.read_csv(input_file)
 
 
 print("=" * 70)
-print("ORIGINAL PLACEMENT PREDICTION DATASET")
+print("ORIGINAL HR EMPLOYEE ATTRITION DATASET")
 print("=" * 70)
 
 
@@ -237,7 +237,7 @@ if len(numeric_columns) >= 2:
    for target_column in numeric_columns:
 
 
-       # Check if target  column "PlacementStatus"contains missing values
+       # Check if target column contains missing values
 
 
        if not df_model[target_column].isnull().any():

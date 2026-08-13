@@ -2,10 +2,8 @@ import pandas as pd
 import numpy as np
 
 
-
-
 # ==========================================================
-# Load Placement Prediction Dataset
+# Load HR Employee Attrition Dataset
 # Original dataset is NOT modified
 # ==========================================================
 
@@ -17,8 +15,6 @@ df = pd.read_csv("/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/HR_Em
 data = df.copy()
 
 
-
-
 # ==========================================================
 # 1. Remove Leading and Trailing Spaces
 # ==========================================================
@@ -28,8 +24,6 @@ for col in data.select_dtypes(include="object").columns:
    data[col] = data[col].str.strip()
 
 
-
-
 # ==========================================================
 # 2. Identify Missing Values
 # ==========================================================
@@ -37,8 +31,6 @@ for col in data.select_dtypes(include="object").columns:
 
 print("Missing Values Before Cleaning:")
 print(data.isnull().sum())
-
-
 
 
 # ==========================================================
@@ -56,8 +48,6 @@ print("\nDuplicate Records Removed:",
      duplicate_count)
 
 
-
-
 # ==========================================================
 # 4. Identify Numerical and Categorical Columns
 # ==========================================================
@@ -73,16 +63,12 @@ cat_cols = data.select_dtypes(
 ).columns.tolist()
 
 
-
-
 print("\nNumerical Columns:")
 print(num_cols)
 
 
 print("\nCategorical Columns:")
 print(cat_cols)
-
-
 
 
 # ==========================================================
@@ -99,8 +85,6 @@ for col in num_cols:
    data[col] = data[col].fillna(mean_value)
 
 
-
-
 # ==========================================================
 # 6. Fill Missing Categorical Values with Mode
 # ==========================================================
@@ -115,17 +99,19 @@ for col in cat_cols:
    data[col] = data[col].fillna(mode_value)
 
 
-
-
 # ==========================================================
 # 7. Select Target Column
-# Change according to your dataset
 # ==========================================================
 
 
-target_column = "PlacementStatus"
+target_column = "Attrition"
 
 
+# Convert target column to binary numeric for target encoding if object
+if target_column in data.columns:
+   data["_Target_Numeric"] = (data[target_column].astype(str).str.lower() == "yes").astype(int)
+else:
+   data["_Target_Numeric"] = 0
 
 
 # ==========================================================
@@ -136,8 +122,6 @@ target_column = "PlacementStatus"
 target_encoded_df = pd.DataFrame()
 
 
-
-
 for col in cat_cols:
 
 
@@ -146,7 +130,7 @@ for col in cat_cols:
 
 
        mean_encoding = (
-           data.groupby(col)[target_column]
+           data.groupby(col)["_Target_Numeric"]
            .mean()
        )
 
@@ -154,6 +138,53 @@ for col in cat_cols:
        target_encoded_df[
            "Target_" + col
        ] = data[col].map(mean_encoding)
+
+
+# Clean up temporary column
+data.drop(columns=["_Target_Numeric"], inplace=True)
+
+
+# ==========================================================
+# 9. Merge Numerical Columns and Target Encoded Columns
+# ==========================================================
+
+
+final_output = pd.concat(
+   [
+       data[num_cols].reset_index(drop=True),
+       target_encoded_df.reset_index(drop=True)
+   ],
+   axis=1
+)
+
+
+# ==========================================================
+# 10. Check Missing Values After Processing
+# ==========================================================
+
+
+print("\nMissing Values After Cleaning:")
+print(final_output.isnull().sum())
+
+
+# ==========================================================
+# 11. Save Final Result
+# ==========================================================
+
+
+final_output.to_csv(
+   "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_target_encode.csv",
+   index=False
+)
+
+
+print("\n======================================")
+print("Target Encoding Completed Successfully")
+print("Original dataset is NOT modified")
+print("Output file:")
+print("clean_target_encode.csv")
+print("======================================")
+
 
 
 
