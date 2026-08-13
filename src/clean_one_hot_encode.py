@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 
-from sklearn.preprocessing import OrdinalEncoder
+from sklearn.preprocessing import OneHotEncoder
 from sklearn.impute import SimpleImputer
 
 
@@ -14,11 +14,27 @@ from sklearn.impute import SimpleImputer
 # ==========================================================
 
 
-df = pd.read_csv("/Users/khvsaieswar/Desktop/placement_prediction/dataset/placement_predict_50K_Raw.csv")
+df = pd.read_csv("/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/HR_Employee_Attrition_raw.csv")
 
 
 # Create a copy for processing
 data = df.copy()
+
+
+print("Original Dataset")
+print("------------------------")
+print(data.head())
+
+
+print("Dataset Shape:", df.shape)
+print("\nData Types:")
+print("------------------------")
+print(data.dtypes)
+
+
+
+
+print("\nDuplicate Records:", df.duplicated().sum())
 
 
 
@@ -48,6 +64,11 @@ print(data.isnull().sum())
 # ==========================================================
 # 3. Remove Duplicate Records
 # ==========================================================
+
+
+# print(data.shape)     # Outputs: rows and columns
+# print(data.shape[0])  # Outputs: (Number of rows)
+#print(data.shape[1])  # Outputs: (Number of columns)
 
 
 before_duplicates = data.shape[0]
@@ -123,41 +144,64 @@ if len(cat_cols) > 0:
 
 
 # ==========================================================
-# 6. Apply Ordinal Encoding
+# 6. One-Hot Encoding
 # ==========================================================
 
 
 if len(cat_cols) > 0:
 
 
-   ordinal_encoder = OrdinalEncoder()
+   encoder = OneHotEncoder(
+       sparse_output=False,
+       handle_unknown="ignore"
+   )
 
 
-   encoded_values = ordinal_encoder.fit_transform(
+   encoded_values = encoder.fit_transform(
        data[cat_cols]
    )
 
 
+
+
    encoded_df = pd.DataFrame(
        encoded_values,
-       columns=[
-           "Ordinal_" + col
-           for col in cat_cols
-       ]
+       columns=encoder.get_feature_names_out(cat_cols)
    )
 
 
-   # Keep numerical columns and encoded columns
+
+
+   # Reset index for merging
+   encoded_df.reset_index(
+       drop=True,
+       inplace=True
+   )
+
+
+
+
+   # Keep numerical columns
+   numeric_df = data[num_cols].reset_index(
+       drop=True
+   )
+
+
+
+
+   # Merge numerical + encoded columns
    final_output = pd.concat(
        [
-           data[num_cols].reset_index(drop=True),
-           encoded_df.reset_index(drop=True)
+           numeric_df,
+           encoded_df
        ],
        axis=1
    )
 
 
 else:
+
+
    final_output = data.copy()
 
 
@@ -180,7 +224,7 @@ print(final_output.isnull().sum())
 
 
 final_output.to_csv(
-   "/Users/khvsaieswar/Desktop/placement_prediction/dataset/clean_ordinal_encode_M2.csv",
+   "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_one_hot_encoding_M2.csv",
    index=False
 )
 
@@ -189,7 +233,7 @@ final_output.to_csv(
 
 print("\n======================================")
 print("Original dataset is NOT modified.")
-print("Ordinal Encoding completed successfully.")
+print("Cleaning and One-Hot Encoding completed.")
 print("Output file:")
-print("clean_ordinal_encode_M2.csv")
+print("clean_one_hot_encoding_M2.csv")
 print("======================================")

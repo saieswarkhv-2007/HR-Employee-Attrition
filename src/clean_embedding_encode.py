@@ -10,10 +10,10 @@ import numpy as np
 # ==========================================================
 
 
-df = pd.read_csv("/Users/khvsaieswar/Desktop/placement_prediction/dataset/placement_predict_50K_Raw.csv")
+df = pd.read_csv("/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_target_encode_M2.csv")
 
 
-# Create a copy
+# Create copy
 data = df.copy()
 
 
@@ -118,22 +118,16 @@ for col in cat_cols:
 
 
 # ==========================================================
-# 7. Select Target Column
-# Change according to your dataset
+# 7. Pandas-Based Embedding Encoding
 # ==========================================================
 
 
-target_column = "PlacementStatus"
+embedding_output = pd.DataFrame()
 
 
 
 
-# ==========================================================
-# 8. Apply Target Encoding Using Pandas
-# ==========================================================
-
-
-target_encoded_df = pd.DataFrame()
+embedding_size = 3     # Number of embedding dimensions
 
 
 
@@ -141,34 +135,72 @@ target_encoded_df = pd.DataFrame()
 for col in cat_cols:
 
 
-   # Do not encode target column itself
-   if col != target_column:
+   # Get unique categories
+   categories = data[col].unique()
 
 
-       mean_encoding = (
-           data.groupby(col)[target_column]
-           .mean()
-       )
 
 
-       target_encoded_df[
-           "Target_" + col
-       ] = data[col].map(mean_encoding)
+   # Create embedding values
+   embedding_matrix = {}
 
 
+   for index, category in enumerate(categories):
+
+
+       vector = np.zeros(embedding_size)
+
+
+       vector[index % embedding_size] = 1
+
+
+       embedding_matrix[category] = vector
+
+
+
+
+   # Convert category to embedding vector
+
+
+   embeddings = data[col].map(
+       embedding_matrix
+   )
+
+
+
+
+   embedding_df = pd.DataFrame(
+       embeddings.tolist(),
+       columns=[
+           f"Embedding_{col}_1",
+           f"Embedding_{col}_2",
+           f"Embedding_{col}_3"
+       ]
+   )
+
+
+
+
+   embedding_output = pd.concat(
+       [
+           embedding_output,
+           embedding_df
+       ],
+       axis=1
+   )
 
 
 
 
 # ==========================================================
-# 9. Merge Numerical Columns and Target Encoded Columns
+# 8. Merge Numerical Columns + Embeddings
 # ==========================================================
 
 
 final_output = pd.concat(
    [
        data[num_cols].reset_index(drop=True),
-       target_encoded_df.reset_index(drop=True)
+       embedding_output.reset_index(drop=True)
    ],
    axis=1
 )
@@ -177,7 +209,7 @@ final_output = pd.concat(
 
 
 # ==========================================================
-# 10. Check Missing Values After Processing
+# 9. Check Missing Values After Processing
 # ==========================================================
 
 
@@ -188,12 +220,12 @@ print(final_output.isnull().sum())
 
 
 # ==========================================================
-# 11. Save Final Result
+# 10. Save Result
 # ==========================================================
 
 
 final_output.to_csv(
-   "/Users/khvsaieswar/Desktop/placement_prediction/dataset/clean_target_encode_M2.csv",
+   "/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/clean_embedded_encode_M2.csv",
    index=False
 )
 
@@ -201,8 +233,8 @@ final_output.to_csv(
 
 
 print("\n======================================")
-print("Target Encoding Completed Successfully")
+print("Embedding Encoding Completed")
 print("Original dataset is NOT modified")
-print("Output file:")
-print("clean_target_encode_M2.csv")
+print("Output File:")
+print("clean_embedded_encode_M2.csv")
 print("======================================")
