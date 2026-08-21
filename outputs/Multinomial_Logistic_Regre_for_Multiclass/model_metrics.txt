@@ -1,0 +1,33 @@
+MULTINOMIAL LOGISTIC REGRESSION RESULTS
+===========================================================================
+
+Dataset: /Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/final_preprocess.csv
+Target: Department
+Number of classes: 3
+
+CLASS MAPPING
+----------------------------------------
+0 = 0
+1 = 1
+2 = 2
+
+MODEL PERFORMANCE
+----------------------------------------
+Accuracy: 0.8946
+Accuracy (%): 89.46%
+Precision: 0.8800
+Recall: 0.8946
+F1 Score: 0.8800
+Cross-Entropy Loss: 0.3519
+
+CLASSIFICATION REPORT
+----------------------------------------
+              precision    recall  f1-score   support
+
+           0       0.50      0.08      0.13        13
+           1       0.91      0.93      0.92       192
+           2       0.87      0.93      0.90        89
+
+    accuracy                           0.89       294
+   macro avg       0.76      0.65      0.65       294
+weighted avg       0.88      0.89      0.88       294

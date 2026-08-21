@@ -1,0 +1,3 @@
+Linear Regression Equation
+========================================
+MonthlyIncome = 0.0050 + (-0.0201 × Age) + (0.0993 × TotalWorkingYears) + (-0.0213 × YearsAtCompany) + (0.8986 × JobLevel)

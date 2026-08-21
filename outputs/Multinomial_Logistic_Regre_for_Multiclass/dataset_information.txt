@@ -1,0 +1,128 @@
+PREPROCESSED HR ATTRITION DATASET INFORMATION
+===========================================================================
+
+Dataset file: /Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/final_preprocess.csv
+Rows: 1470
+Columns: 35
+Target column: Department
+Number of classes: 3
+
+Column names:
+- Age
+- BusinessTravel
+- DailyRate
+- Department
+- DistanceFromHome
+- Education
+- EducationField
+- EmployeeCount
+- EmployeeNumber
+- EnvironmentSatisfaction
+- Gender
+- HourlyRate
+- JobInvolvement
+- JobLevel
+- JobRole
+- JobSatisfaction
+- MaritalStatus
+- MonthlyIncome
+- MonthlyRate
+- NumCompaniesWorked
+- Over18
+- OverTime
+- PercentSalaryHike
+- PerformanceRating
+- RelationshipSatisfaction
+- StandardHours
+- StockOptionLevel
+- TotalWorkingYears
+- TrainingTimesLastYear
+- WorkLifeBalance
+- YearsAtCompany
+- YearsInCurrentRole
+- YearsSinceLastPromotion
+- YearsWithCurrManager
+- Attrition
+
+Data types:
+Age                         float64
+BusinessTravel                int64
+DailyRate                   float64
+Department                    int64
+DistanceFromHome            float64
+Education                   float64
+EducationField                int64
+EmployeeCount               float64
+EmployeeNumber              float64
+EnvironmentSatisfaction     float64
+Gender                        int64
+HourlyRate                  float64
+JobInvolvement              float64
+JobLevel                    float64
+JobRole                       int64
+JobSatisfaction             float64
+MaritalStatus                 int64
+MonthlyIncome               float64
+MonthlyRate                 float64
+NumCompaniesWorked          float64
+Over18                        int64
+OverTime                      int64
+PercentSalaryHike           float64
+PerformanceRating           float64
+RelationshipSatisfaction    float64
+StandardHours               float64
+StockOptionLevel            float64
+TotalWorkingYears           float64
+TrainingTimesLastYear       float64
+WorkLifeBalance             float64
+YearsAtCompany              float64
+YearsInCurrentRole          float64
+YearsSinceLastPromotion     float64
+YearsWithCurrManager        float64
+Attrition                     int64
+dtype: object
+
+Missing values:
+Age                         0
+BusinessTravel              0
+DailyRate                   0
+Department                  0
+DistanceFromHome            0
+Education                   0
+EducationField              0
+EmployeeCount               0
+EmployeeNumber              0
+EnvironmentSatisfaction     0
+Gender                      0
+HourlyRate                  0
+JobInvolvement              0
+JobLevel                    0
+JobRole                     0
+JobSatisfaction             0
+MaritalStatus               0
+MonthlyIncome               0
+MonthlyRate                 0
+NumCompaniesWorked          0
+Over18                      0
+OverTime                    0
+PercentSalaryHike           0
+PerformanceRating           0
+RelationshipSatisfaction    0
+StandardHours               0
+StockOptionLevel            0
+TotalWorkingYears           0
+TrainingTimesLastYear       0
+WorkLifeBalance             0
+YearsAtCompany              0
+YearsInCurrentRole          0
+YearsSinceLastPromotion     0
+YearsWithCurrManager        0
+Attrition                   0
+dtype: int64
+
+Class distribution:
+Department
+1    961
+2    446
+0     63
+Name: count, dtype: int64
