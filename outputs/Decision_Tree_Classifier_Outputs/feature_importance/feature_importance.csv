@@ -1,0 +1,56 @@
+Feature,Importance
+numeric__TotalWorkingYears,0.2023807948657079
+numeric__DailyRate,0.12766367379574572
+numeric__Age,0.11566871873359083
+numeric__MonthlyIncome,0.08549314748386108
+categorical__OverTime_No,0.08181854203309774
+categorical__MaritalStatus_Single,0.050651556486087775
+categorical__OverTime_Yes,0.048969360694852485
+numeric__HourlyRate,0.04437090456903668
+categorical__JobRole_Research Scientist,0.044307203252000715
+numeric__YearsInCurrentRole,0.029816360313620525
+categorical__JobRole_Sales Executive,0.02765575449379292
+numeric__EnvironmentSatisfaction,0.02731489963339053
+numeric__WorkLifeBalance,0.02031309793054329
+categorical__EducationField_Medical,0.018974047472303978
+numeric__YearsSinceLastPromotion,0.01701961019711868
+numeric__NumCompaniesWorked,0.015462213782716413
+numeric__TrainingTimesLastYear,0.014011447515799112
+numeric__RelationshipSatisfaction,0.00905355070251635
+numeric__YearsWithCurrManager,0.0084943363205842
+categorical__JobRole_Sales Representative,0.007330674022990875
+numeric__PercentSalaryHike,0.0017392876849612014
+numeric__MonthlyRate,0.0014908180156810319
+categorical__JobRole_Manager,0.0
+categorical__Gender_Female,0.0
+categorical__Gender_Male,0.0
+categorical__JobRole_Healthcare Representative,0.0
+categorical__JobRole_Human Resources,0.0
+categorical__JobRole_Laboratory Technician,0.0
+categorical__JobRole_Research Director,0.0
+categorical__JobRole_Manufacturing Director,0.0
+categorical__MaritalStatus_Divorced,0.0
+numeric__DistanceFromHome,0.0
+categorical__MaritalStatus_Married,0.0
+categorical__Over18_Y,0.0
+categorical__EducationField_Technical Degree,0.0
+numeric__Education,0.0
+categorical__Department_Sales,0.0
+categorical__EducationField_Other,0.0
+categorical__EducationField_Marketing,0.0
+numeric__JobLevel,0.0
+numeric__JobSatisfaction,0.0
+numeric__PerformanceRating,0.0
+numeric__StandardHours,0.0
+numeric__StockOptionLevel,0.0
+numeric__EmployeeNumber,0.0
+numeric__YearsAtCompany,0.0
+categorical__BusinessTravel_Non-Travel,0.0
+numeric__EmployeeCount,0.0
+categorical__BusinessTravel_Travel_Rarely,0.0
+categorical__Department_Human Resources,0.0
+categorical__Department_Research & Development,0.0
+numeric__JobInvolvement,0.0
+categorical__EducationField_Human Resources,0.0
+categorical__EducationField_Life Sciences,0.0
+categorical__BusinessTravel_Travel_Frequently,0.0
