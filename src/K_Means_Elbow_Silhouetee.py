@@ -15,7 +15,7 @@
 # 4. Silhouette Score
 # 5. PCA visualization
 #
-# IMPORTANT:
+# IMPORTANT:l
 # - Uses the PREPROCESSED dataset
 # - Original dataset is NOT modified
 # - Outputs are stored in separate folders
