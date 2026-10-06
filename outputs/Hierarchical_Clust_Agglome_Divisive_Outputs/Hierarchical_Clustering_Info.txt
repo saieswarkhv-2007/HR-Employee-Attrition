@@ -1,0 +1,35 @@
+HR EMPLOYEE ATTRITION - HIERARCHICAL CLUSTERING
+================================================
+
+Original Dataset:
+/Users/khvsaieswar/Desktop/HR_Employee_Attrition/dataset/final_preprocess.csv
+
+Original Dataset Shape:
+(1470, 35)
+
+Features Used:
+- Age
+- TotalWorkingYears
+- MonthlyIncome
+- YearsAtCompany
+
+Records Used:
+500
+
+Number of Clusters:
+3
+
+Random State:
+42
+
+Agglomerative Metrics:
+Silhouette Score: 0.24562795978365554
+Calinski-Harabasz Index: 321.1372656666735
+Davies-Bouldin Index: 1.0904729986562631
+
+Divisive Metrics:
+Silhouette Score: 0.2684169217837474
+Calinski-Harabasz Index: 349.0951113425976
+Davies-Bouldin Index: 1.2018876883069805
+
+Original dataset was not modified.
