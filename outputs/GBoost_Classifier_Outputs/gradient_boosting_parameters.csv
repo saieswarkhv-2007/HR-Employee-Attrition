@@ -1,0 +1,7 @@
+Parameter,Value
+Algorithm,Gradient Boosting Classifier
+Number of Estimators,100
+Learning Rate,0.1
+Maximum Depth,3
+Test Size,0.2
+Random State,42

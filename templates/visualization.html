@@ -6,69 +6,27 @@
 
 <div class="page">
     <h1>📈 Exploratory Data Analysis & Visualizations</h1>
-    <p>Visual analytics generated from the HR Employee Attrition dataset.</p>
+    <p>All generated output images are loaded directly from the project output folders and can be viewed or downloaded below.</p>
 
-    <div class="cards">
-        <div class="card stat-primary">
-            <h3>📊 Attrition Distribution</h3>
-            <p>Count plot of employee attrition (1,233 Stayed vs 237 Departed).</p>
-        </div>
-
-        <div class="card stat-success">
-            <h3>💰 Monthly Income vs Attrition</h3>
-            <p>Boxplot comparison showing lower median monthly income for departing staff.</p>
-        </div>
-
-        <div class="card stat-warning">
-            <h3>⏰ OverTime Impact Analysis</h3>
-            <p>High attrition propensity observed among employees working frequent overtime.</p>
-        </div>
-
-        <div class="card stat-primary">
-            <h3>🔥 Feature Correlation Matrix</h3>
-            <p>Multivariate correlation heatmap across numerical HR metrics.</p>
+    {% for group in image_groups %}
+    <div style="margin-top: 30px; margin-bottom: 25px;">
+        <h2 style="margin-bottom: 18px;">{{ group.name }}</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px;">
+            {% for image in group.images %}
+            <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);">
+                <img src="{{ image.preview_url }}" alt="{{ image.name }}" style="width: 100%; height: 220px; object-fit: contain; display: block; background: #f8fafc; border-bottom: 1px solid #e2e8f0;">
+                <div style="padding: 12px 14px;">
+                    <div style="font-weight: 600; margin-bottom: 10px; font-size: 13px; color: #0f172a;">{{ image.name }}</div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <a href="{{ image.preview_url }}" target="_blank" style="display: inline-block; padding: 7px 12px; background: #2563eb; color: white; border-radius: 8px; text-decoration: none; font-size: 12px; font-weight: 600;">View</a>
+                        <a href="{{ image.download_url }}" download style="display: inline-block; padding: 7px 12px; background: #10b981; color: white; border-radius: 8px; text-decoration: none; font-size: 12px; font-weight: 600;">Download</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
-
-    <h2>Generated Plots & Folder Structure</h2>
-    <p>All high-resolution figures have been automatically saved to designated workspace directories:</p>
-
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th>Visualization Type</th>
-                    <th>Saved File Location</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Correlation Matrix Heatmap</td>
-                    <td><code>outputs/Boxplots_correlation/correlation_heatmap.png</code></td>
-                </tr>
-                <tr>
-                    <td>Feature vs Attrition Boxplots</td>
-                    <td><code>outputs/Boxplots_correlation/boxplot_*_vs_Attrition.png</code></td>
-                </tr>
-                <tr>
-                    <td>Univariate Histograms</td>
-                    <td><code>outputs/EDA_Analysis_outputs/Histogram_*.png</code></td>
-                </tr>
-                <tr>
-                    <td>Target Attrition Distribution</td>
-                    <td><code>outputs/EDA_Analysis_outputs/Target_Distribution.png</code></td>
-                </tr>
-                <tr>
-                    <td>Category Count Plots</td>
-                    <td><code>outputs/EDA_Analysis_outputs/Countplot_*.png</code></td>
-                </tr>
-                <tr>
-                    <td>Pair Plot Analysis</td>
-                    <td><code>outputs/EDA_Analysis_outputs/Pairplot.png</code></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    {% endfor %}
 </div>
 
 {% endblock %}

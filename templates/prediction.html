@@ -6,173 +6,127 @@
 
 <div class="page">
     <h1>🎯 Employee Attrition Risk Predictor</h1>
-    <p>Enter employee parameters below to calculate real-time attrition risk probability using our trained ML model.</p>
+    <p>Enter employee parameters below to calculate real-time attrition risk probability using the trained ML model.</p>
 
-    <form id="attritionForm">
+    <form method="post">
         <div class="form-grid">
             <div class="form-group">
-                <label for="empAge">Age</label>
-                <input type="number" id="empAge" value="34" min="18" max="70" required>
+                <label for="Age">Age</label>
+                <input type="number" id="Age" name="Age" value="{{ defaults.Age }}" min="18" max="70" required>
             </div>
 
             <div class="form-group">
-                <label for="empDepartment">Department</label>
-                <select id="empDepartment">
-                    <option value="Research & Development">Research & Development</option>
-                    <option value="Sales">Sales</option>
-                    <option value="Human Resources">Human Resources</option>
+                <label for="Department">Department</label>
+                <select id="Department" name="Department">
+                    <option value="Research & Development" {% if defaults.Department == 'Research & Development' %}selected{% endif %}>Research & Development</option>
+                    <option value="Sales" {% if defaults.Department == 'Sales' %}selected{% endif %}>Sales</option>
+                    <option value="Human Resources" {% if defaults.Department == 'Human Resources' %}selected{% endif %}>Human Resources</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="empJobRole">Job Role</label>
-                <select id="empJobRole">
-                    <option value="Research Scientist">Research Scientist</option>
-                    <option value="Sales Executive">Sales Executive</option>
-                    <option value="Laboratory Technician">Laboratory Technician</option>
-                    <option value="Manufacturing Director">Manufacturing Director</option>
-                    <option value="Healthcare Representative">Healthcare Representative</option>
-                    <option value="Manager">Manager</option>
-                    <option value="Sales Representative">Sales Representative</option>
-                    <option value="Research Director">Research Director</option>
-                    <option value="Human Resources">Human Resources</option>
+                <label for="JobRole">Job Role</label>
+                <select id="JobRole" name="JobRole">
+                    <option value="Research Scientist" {% if defaults.JobRole == 'Research Scientist' %}selected{% endif %}>Research Scientist</option>
+                    <option value="Sales Executive" {% if defaults.JobRole == 'Sales Executive' %}selected{% endif %}>Sales Executive</option>
+                    <option value="Laboratory Technician" {% if defaults.JobRole == 'Laboratory Technician' %}selected{% endif %}>Laboratory Technician</option>
+                    <option value="Manufacturing Director" {% if defaults.JobRole == 'Manufacturing Director' %}selected{% endif %}>Manufacturing Director</option>
+                    <option value="Healthcare Representative" {% if defaults.JobRole == 'Healthcare Representative' %}selected{% endif %}>Healthcare Representative</option>
+                    <option value="Manager" {% if defaults.JobRole == 'Manager' %}selected{% endif %}>Manager</option>
+                    <option value="Sales Representative" {% if defaults.JobRole == 'Sales Representative' %}selected{% endif %}>Sales Representative</option>
+                    <option value="Research Director" {% if defaults.JobRole == 'Research Director' %}selected{% endif %}>Research Director</option>
+                    <option value="Human Resources" {% if defaults.JobRole == 'Human Resources' %}selected{% endif %}>Human Resources</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="empIncome">Monthly Income ($)</label>
-                <input type="number" id="empIncome" value="5500" min="1000" max="30000" required>
+                <label for="MonthlyIncome">Monthly Income ($)</label>
+                <input type="number" id="MonthlyIncome" name="MonthlyIncome" value="{{ defaults.MonthlyIncome }}" min="1000" max="30000" required>
             </div>
 
             <div class="form-group">
-                <label for="empOvertime">OverTime</label>
-                <select id="empOvertime">
-                    <option value="No">No</option>
-                    <option value="Yes">Yes</option>
+                <label for="OverTime">OverTime</label>
+                <select id="OverTime" name="OverTime">
+                    <option value="No" {% if defaults.OverTime == 'No' %}selected{% endif %}>No</option>
+                    <option value="Yes" {% if defaults.OverTime == 'Yes' %}selected{% endif %}>Yes</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="empDistance">Distance From Home (km)</label>
-                <input type="number" id="empDistance" value="6" min="1" max="50" required>
+                <label for="DistanceFromHome">Distance From Home (km)</label>
+                <input type="number" id="DistanceFromHome" name="DistanceFromHome" value="{{ defaults.DistanceFromHome }}" min="1" max="50" required>
             </div>
 
             <div class="form-group">
-                <label for="empTotalYears">Total Working Years</label>
-                <input type="number" id="empTotalYears" value="8" min="0" max="40" required>
+                <label for="TotalWorkingYears">Total Working Years</label>
+                <input type="number" id="TotalWorkingYears" name="TotalWorkingYears" value="{{ defaults.TotalWorkingYears }}" min="0" max="40" required>
             </div>
 
             <div class="form-group">
-                <label for="empYearsCompany">Years at Company</label>
-                <input type="number" id="empYearsCompany" value="4" min="0" max="40" required>
+                <label for="YearsAtCompany">Years at Company</label>
+                <input type="number" id="YearsAtCompany" name="YearsAtCompany" value="{{ defaults.YearsAtCompany }}" min="0" max="40" required>
             </div>
 
             <div class="form-group">
-                <label for="empJobSat">Job Satisfaction (1-4)</label>
-                <select id="empJobSat">
-                    <option value="4">4 - High Satisfaction</option>
-                    <option value="3">3 - Medium</option>
-                    <option value="2">2 - Low</option>
-                    <option value="1">1 - Very Low</option>
+                <label for="JobSatisfaction">Job Satisfaction (1-4)</label>
+                <select id="JobSatisfaction" name="JobSatisfaction">
+                    <option value="4" {% if defaults.JobSatisfaction == 4 %}selected{% endif %}>4 - High Satisfaction</option>
+                    <option value="3" {% if defaults.JobSatisfaction == 3 %}selected{% endif %}>3 - Medium</option>
+                    <option value="2" {% if defaults.JobSatisfaction == 2 %}selected{% endif %}>2 - Low</option>
+                    <option value="1" {% if defaults.JobSatisfaction == 1 %}selected{% endif %}>1 - Very Low</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="empWorkLife">Work Life Balance (1-4)</label>
-                <select id="empWorkLife">
-                    <option value="3">3 - Good</option>
-                    <option value="4">4 - Excellent</option>
-                    <option value="2">2 - Fair</option>
-                    <option value="1">1 - Poor</option>
+                <label for="WorkLifeBalance">Work Life Balance (1-4)</label>
+                <select id="WorkLifeBalance" name="WorkLifeBalance">
+                    <option value="3" {% if defaults.WorkLifeBalance == 3 %}selected{% endif %}>3 - Good</option>
+                    <option value="4" {% if defaults.WorkLifeBalance == 4 %}selected{% endif %}>4 - Excellent</option>
+                    <option value="2" {% if defaults.WorkLifeBalance == 2 %}selected{% endif %}>2 - Fair</option>
+                    <option value="1" {% if defaults.WorkLifeBalance == 1 %}selected{% endif %}>1 - Poor</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="empEnvSat">Environment Satisfaction (1-4)</label>
-                <select id="empEnvSat">
-                    <option value="3">3 - High</option>
-                    <option value="4">4 - Very High</option>
-                    <option value="2">2 - Medium</option>
-                    <option value="1">1 - Low</option>
+                <label for="EnvironmentSatisfaction">Environment Satisfaction (1-4)</label>
+                <select id="EnvironmentSatisfaction" name="EnvironmentSatisfaction">
+                    <option value="3" {% if defaults.EnvironmentSatisfaction == 3 %}selected{% endif %}>3 - High</option>
+                    <option value="4" {% if defaults.EnvironmentSatisfaction == 4 %}selected{% endif %}>4 - Very High</option>
+                    <option value="2" {% if defaults.EnvironmentSatisfaction == 2 %}selected{% endif %}>2 - Medium</option>
+                    <option value="1" {% if defaults.EnvironmentSatisfaction == 1 %}selected{% endif %}>1 - Low</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="empBusinessTravel">Business Travel</label>
-                <select id="empBusinessTravel">
-                    <option value="Travel_Rarely">Travel Rarely</option>
-                    <option value="Travel_Frequently">Travel Frequently</option>
-                    <option value="Non-Travel">Non-Travel</option>
+                <label for="BusinessTravel">Business Travel</label>
+                <select id="BusinessTravel" name="BusinessTravel">
+                    <option value="Travel_Rarely" {% if defaults.BusinessTravel == 'Travel_Rarely' %}selected{% endif %}>Travel Rarely</option>
+                    <option value="Travel_Frequently" {% if defaults.BusinessTravel == 'Travel_Frequently' %}selected{% endif %}>Travel Frequently</option>
+                    <option value="Non-Travel" {% if defaults.BusinessTravel == 'Non-Travel' %}selected{% endif %}>Non-Travel</option>
                 </select>
             </div>
         </div>
 
         <div class="form-actions">
-            <button type="button" id="predictBtn">
-                ⚡ Calculate Attrition Risk
-            </button>
+            <button type="submit">⚡ Calculate Attrition Risk</button>
             <button type="reset" class="secondary">Reset Form</button>
         </div>
     </form>
 
-    <div class="result-box" id="resultContainer">
-        <h3 id="resultTitle" style="margin-bottom: 10px; font-size: 20px;"></h3>
-        <p id="resultText" style="font-size: 15px; margin-bottom: 14px;"></p>
-        <div id="recommendationBox" style="padding: 14px; border-radius: 8px; font-size: 14px;"></div>
+    {% if result %}
+    <div class="result-box active" style="border-left: 5px solid {% if result.label == 'High risk' %}#ef4444{% else %}#10b981{% endif %}; background: {% if result.label == 'High risk' %}#fef2f2{% else %}#f0fdf4{% endif %};">
+        <h3 style="margin-bottom: 10px; font-size: 20px; color: {% if result.label == 'High risk' %}#dc2626{% else %}#16a34a{% endif %};">
+            {% if result.label == 'High risk' %}⚠️ HIGH ATTRITION RISK{% else %}✅ LOW ATTRITION RISK{% endif %}
+            ({{ result.risk_percent }}% Probability)
+        </h3>
+        <p style="font-size: 15px; margin-bottom: 14px;">
+            This prediction was generated by the trained machine learning model using the current input values.
+        </p>
+        <div style="padding: 14px; border-radius: 8px; font-size: 14px; background: {% if result.label == 'High risk' %}#fee2e2{% else %}#dcfce7{% endif %}; color: {% if result.label == 'High risk' %}#991b1b{% else %}#166534{% endif %};">
+            <strong>HR Recommendation:</strong> {{ result.recommendation }}
+        </div>
     </div>
+    {% endif %}
 </div>
-
-<script>
-    document.getElementById('predictBtn').addEventListener('click', function() {
-        const age = parseInt(document.getElementById('empAge').value) || 30;
-        const income = parseInt(document.getElementById('empIncome').value) || 5000;
-        const overtime = document.getElementById('empOvertime').value;
-        const distance = parseInt(document.getElementById('empDistance').value) || 5;
-        const jobSat = parseInt(document.getElementById('empJobSat').value) || 3;
-        const workLife = parseInt(document.getElementById('empWorkLife').value) || 3;
-        const travel = document.getElementById('empBusinessTravel').value;
-
-        // Calculate heuristic risk score based on HR Employee Attrition weights
-        let riskScore = 15; // base risk
-
-        if (overtime === 'Yes') riskScore += 28;
-        if (income < 3500) riskScore += 22;
-        else if (income < 6000) riskScore += 10;
-        if (jobSat <= 2) riskScore += 18;
-        if (workLife <= 2) riskScore += 15;
-        if (distance > 15) riskScore += 12;
-        if (age < 26) riskScore += 14;
-        if (travel === 'Travel_Frequently') riskScore += 15;
-
-        riskScore = Math.min(Math.max(riskScore, 4), 96);
-
-        const container = document.getElementById('resultContainer');
-        const title = document.getElementById('resultTitle');
-        const text = document.getElementById('resultText');
-        const rec = document.getElementById('recommendationBox');
-
-        container.classList.add('active');
-
-        if (riskScore >= 50) {
-            container.style.borderLeft = '5px solid #ef4444';
-            container.style.backgroundColor = '#fef2f2';
-            title.style.color = '#dc2626';
-            title.innerHTML = '⚠️ HIGH ATTRITION RISK DETECTED (' + riskScore + '% Probability)';
-            text.innerHTML = 'This employee exhibits strong indicators of turnover propensity. Key contributing factors include OverTime demand, income levels, and work-life balance feedback.';
-            rec.style.backgroundColor = '#fee2e2';
-            rec.style.color = '#991b1b';
-            rec.innerHTML = '<strong>Recommended HR Actions:</strong> Conduct a 1-on-1 stay interview, evaluate workload distribution, and review compensation adjustments.';
-        } else {
-            container.style.borderLeft = '5px solid #10b981';
-            container.style.backgroundColor = '#f0fdf4';
-            title.style.color = '#16a34a';
-            title.innerHTML = '✅ LOW ATTRITION RISK (' + riskScore + '% Probability)';
-            text.innerHTML = 'This employee exhibits high organizational stability and retention probability.';
-            rec.style.backgroundColor = '#dcfce7';
-            rec.style.color = '#166534';
-            rec.innerHTML = '<strong>Recommended HR Actions:</strong> Maintain positive workplace environment and provide career growth path opportunities.';
-        }
-    });
-</script>
 
 {% endblock %}

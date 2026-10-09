@@ -1,0 +1,9 @@
+Parameter,Value
+Algorithm,XGBoost Classifier
+Estimators,200
+Maximum Depth,5
+Learning Rate,0.05
+Subsample,0.8
+Column Sample By Tree,0.8
+Test Size,0.2
+Random State,42

@@ -1,12 +1,6 @@
 # ==============================================================
 # HR EMPLOYEE ATTRITION - HIERARCHICAL CLUSTERING
 # Agglomerative + Divisive Hierarchical Clustering
-#
-# IMPORTANT:
-# - Original dataset is NOT modified
-# - Only a copy/sample is used for clustering
-# - All outputs are stored in ONE output folder
-# - No TensorFlow required
 # ==============================================================
 
 import os
